@@ -32,8 +32,8 @@ public class MgmProfile extends javax.swing.JFrame {
      */
     public MgmProfile() {
         initComponents();
-        time();
         Search();
+        time();
     }
 
 //===============================================================(Time & Date)==
@@ -231,7 +231,7 @@ public class MgmProfile extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel2.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 450, 38));
+        jPanel2.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 450, 38));
 
         jLabel7.setBackground(new java.awt.Color(204, 204, 204));
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -304,20 +304,20 @@ public class MgmProfile extends javax.swing.JFrame {
 
         btnUpdate1.setBackground(new java.awt.Color(153, 153, 153));
         btnUpdate1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnUpdate1.setText("test");
+        btnUpdate1.setText("Load Profile Details");
         btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdate1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnUpdate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 110, 38));
+        jPanel2.add(btnUpdate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 450, 38));
 
         txt_ADDRESS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel2.add(txt_ADDRESS, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 160, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 420));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 450));
 
-        setSize(new java.awt.Dimension(633, 458));
+        setSize(new java.awt.Dimension(633, 476));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
