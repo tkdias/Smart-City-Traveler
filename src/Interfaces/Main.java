@@ -16,7 +16,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -64,8 +67,6 @@ public class Main extends javax.swing.JFrame {
     }
 
 //==============================================================================
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -173,6 +174,16 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        MgmProfile ProfileMgm = new MgmProfile();
+        String xx = txtBox.getText();
+        MgmProfile.txtBox.setText(xx);
+        ProfileMgm.setVisible(true);
+        ProfileMgm.pack();
+        ProfileMgm.setLocationRelativeTo(null);
+        ProfileMgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+
 
     }//GEN-LAST:event_btnAddActionPerformed
 

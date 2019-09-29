@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -32,6 +33,7 @@ public class MgmProfile extends javax.swing.JFrame {
     public MgmProfile() {
         initComponents();
         time();
+        Search();
     }
 
 //===============================================================(Time & Date)==
@@ -64,7 +66,7 @@ public class MgmProfile extends javax.swing.JFrame {
     }
 
 //==============================================================================
-  
+    
 //==================================================================Clearall()==
     public void Clearall() {
 
@@ -77,10 +79,41 @@ public class MgmProfile extends javax.swing.JFrame {
         txt_FN.setText("");
         txt_Phn.setText("");
         jDateChooser_BDATE.setCalendar(null);
-        txt_Phn.setText("");
+        txt_ADDRESS.setText("");
+
     }
 //==============================================================================
+//====================================================================Search()==
+    public void Search() {
+        try {
+            
+            System.out.println(txtBox.getText());
 
+            Connection c = DB.mycon();
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("SELECT * FROM users WHERE username ='" + txtBox.getText() + "'");
+
+            SimpleDateFormat DDate = new SimpleDateFormat("yyyy-MM-dd");
+
+            while (rs.next()) {
+                
+                txt_FN.setText(rs.getString("first_name"));
+                txt_LN.setText(rs.getString("last_name"));
+                txt_UN.setText(rs.getString("username"));
+                txt_Email.setText(rs.getString("email"));
+                jPasswordField_PASS.setText(rs.getString("password"));
+                jPasswordField_REPASS.setText(rs.getString("password"));
+                txt_Phn.setText(rs.getString("phone"));
+                jDateChooser_BDATE.setDate(DDate.parse(rs.getString("dob")));
+                txt_ADDRESS.setText(rs.getString("address"));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+//==============================================================================
 //====================================================================Update()==
     public void Update() {
 
@@ -97,7 +130,7 @@ public class MgmProfile extends javax.swing.JFrame {
 
                 Connection c = DB.mycon();
                 Statement s = c.createStatement();
-                //s.executeUpdate("UPDATE users SET first_name = '" + txt_FN.getText() + "',Name = '" + txt_FN.getText() + "',Date = '" + jDate + "',Checkbox = '" + CheckBoxx + "',Gender = '" + cmbGender.getSelectedItem() + "' where ID = '" + txtId.getText() + "' ");
+                s.executeUpdate("UPDATE users SET first_name = '" + txt_FN.getText() + "',last_name = '" + txt_LN.getText() + "',email = '" + txt_Email.getText() + "',password = '" + jPasswordField_PASS.getText() + "', phone = '" + txt_Phn.getText() + "', dob = '" + jDate + "', address = '" + txt_ADDRESS.getText() + "' where username = '" + txt_UN.getText() + "' ");
                 JOptionPane.showMessageDialog(rootPane, "record has been Updated successfully ");
 
                 Clearall();
@@ -148,6 +181,7 @@ public class MgmProfile extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jDateChooser_BDATE = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
+        btnUpdate1 = new javax.swing.JButton();
         txt_ADDRESS = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -197,7 +231,7 @@ public class MgmProfile extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel2.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 450, 38));
+        jPanel2.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 450, 38));
 
         jLabel7.setBackground(new java.awt.Color(204, 204, 204));
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -205,7 +239,6 @@ public class MgmProfile extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 92, -1));
 
         txt_FN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_FN.setForeground(new java.awt.Color(228, 241, 254));
         jPanel2.add(txt_FN, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 160, -1));
 
         jLabel8.setBackground(new java.awt.Color(204, 204, 204));
@@ -214,7 +247,6 @@ public class MgmProfile extends javax.swing.JFrame {
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 92, -1));
 
         txt_LN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_LN.setForeground(new java.awt.Color(228, 241, 254));
         jPanel2.add(txt_LN, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 160, -1));
 
         jLabel9.setBackground(new java.awt.Color(204, 204, 204));
@@ -223,7 +255,6 @@ public class MgmProfile extends javax.swing.JFrame {
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 90, -1));
 
         txt_UN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_UN.setForeground(new java.awt.Color(228, 241, 254));
         jPanel2.add(txt_UN, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 160, -1));
 
         jLabel13.setBackground(new java.awt.Color(204, 204, 204));
@@ -232,7 +263,6 @@ public class MgmProfile extends javax.swing.JFrame {
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, -1, -1));
 
         txt_Email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_Email.setForeground(new java.awt.Color(228, 241, 254));
         jPanel2.add(txt_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 160, -1));
 
         jLabel10.setBackground(new java.awt.Color(204, 204, 204));
@@ -241,7 +271,6 @@ public class MgmProfile extends javax.swing.JFrame {
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         jPasswordField_PASS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPasswordField_PASS.setForeground(new java.awt.Color(228, 241, 254));
         jPanel2.add(jPasswordField_PASS, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 160, -1));
 
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
@@ -250,7 +279,6 @@ public class MgmProfile extends javax.swing.JFrame {
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, -1, -1));
 
         jPasswordField_REPASS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPasswordField_REPASS.setForeground(new java.awt.Color(228, 241, 254));
         jPanel2.add(jPasswordField_REPASS, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 160, -1));
 
         jLabel14.setBackground(new java.awt.Color(204, 204, 204));
@@ -259,7 +287,6 @@ public class MgmProfile extends javax.swing.JFrame {
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 60, -1));
 
         txt_Phn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_Phn.setForeground(new java.awt.Color(228, 241, 254));
         jPanel2.add(txt_Phn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 160, -1));
 
         jLabel12.setBackground(new java.awt.Color(204, 204, 204));
@@ -275,8 +302,17 @@ public class MgmProfile extends javax.swing.JFrame {
         jLabel15.setText("Address:");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
+        btnUpdate1.setBackground(new java.awt.Color(153, 153, 153));
+        btnUpdate1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnUpdate1.setText("test");
+        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdate1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnUpdate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 110, 38));
+
         txt_ADDRESS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_ADDRESS.setForeground(new java.awt.Color(228, 241, 254));
         jPanel2.add(txt_ADDRESS, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 160, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 420));
@@ -288,6 +324,10 @@ public class MgmProfile extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+        Search();
+    }//GEN-LAST:event_btnUpdate1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,6 +369,7 @@ public class MgmProfile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnUpdate1;
     private com.toedter.calendar.JDateChooser jDateChooser_BDATE;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -347,7 +388,7 @@ public class MgmProfile extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField_PASS;
     private javax.swing.JPasswordField jPasswordField_REPASS;
     private javax.swing.JPopupMenu jPopupMenu1;
-    public javax.swing.JLabel txtBox;
+    public static javax.swing.JLabel txtBox;
     private javax.swing.JTextField txt_ADDRESS;
     private javax.swing.JTextField txt_Email;
     private javax.swing.JTextField txt_FN;
