@@ -109,17 +109,17 @@ public class Main extends javax.swing.JFrame {
         jLabel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 140, 30));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Sample Codes");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 260, 40));
+        jLabel6.setText("Smart City Traveler");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 290, 40));
 
         txtBox.setBackground(new java.awt.Color(255, 255, 255));
         txtBox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtBox.setForeground(new java.awt.Color(255, 255, 255));
         txtBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtBox.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel1.add(txtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 120, 70));
+        jPanel1.add(txtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 600, 90));
 
