@@ -1,2 +1,2 @@
-# Tourism-Remake
- Tourism Place Recommendations
+# Smart-City-Traveler
+ Tourism - Place Recommendations
