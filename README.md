@@ -1,2 +1,2 @@
 # Tourism-Remake
- Tourism Place Recommendations
+ Tourism - Place Recommendations
