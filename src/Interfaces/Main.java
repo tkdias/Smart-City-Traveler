@@ -126,7 +126,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 204, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAdd.setBackground(new java.awt.Color(102, 102, 102));
+        btnAdd.setBackground(new java.awt.Color(153, 153, 153));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdd.setText("Profile Management");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +136,7 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 580, 60));
 
-        btnAdd1.setBackground(new java.awt.Color(102, 102, 102));
+        btnAdd1.setBackground(new java.awt.Color(153, 153, 153));
         btnAdd1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdd1.setText("Districts Management");
         btnAdd1.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +146,7 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel2.add(btnAdd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 580, 60));
 
-        btnAdd2.setBackground(new java.awt.Color(102, 102, 102));
+        btnAdd2.setBackground(new java.awt.Color(153, 153, 153));
         btnAdd2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdd2.setText("Tourism Location Management");
         btnAdd2.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +156,7 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel2.add(btnAdd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 580, 60));
 
-        btnAdd3.setBackground(new java.awt.Color(102, 102, 102));
+        btnAdd3.setBackground(new java.awt.Color(153, 153, 153));
         btnAdd3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdd3.setText("Province Management");
         btnAdd3.addActionListener(new java.awt.event.ActionListener() {

@@ -12,6 +12,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -42,6 +46,57 @@ public class SignUp extends javax.swing.JFrame {
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
     }
 
+//==================================================================Clearall()==
+    public void Clearall() {
+
+        txt_FN.setText("");
+        txt_LN.setText("");
+        txt_UN.setText("");
+        txt_Email.setText("");
+        jPasswordField_PASS.setText("");
+        jPasswordField_REPASS.setText("");
+        txt_FN.setText("");
+        txt_Phn.setText("");
+        jDateChooser_BDATE.setCalendar(null);
+        txt_ADDRESS.setText("");
+
+    }
+//==============================================================================
+//====================================================================Insert()==
+
+    public void Insert() {
+
+        try {
+
+            Random random = new Random();
+            int rand = random.nextInt(9999);
+            //jTextField1.setText(Integer.toString(rand));
+            //show confirm msg box
+            int x = JOptionPane.showConfirmDialog(rootPane, "Do you want to save this Record ? ");
+
+            if (x == 0) {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                String jDate = sdf.format(jDateChooser_BDATE.getDate());
+
+                Connection c = DB.mycon();
+                Statement s = c.createStatement();
+                s.executeUpdate("INSERT INTO users (user_id,first_name,last_name,username,email,password,phone,dob,address) values('" + rand + "','" + txt_FN.getText() + "','" + txt_LN.getText() + "','" + txt_UN.getText() + "','" + txt_Email.getText() + "','" + jPasswordField_PASS.getText() + "','" + txt_Phn.getText() + "','" + jDate + "','" + txt_ADDRESS.getText() + "')");
+                JOptionPane.showMessageDialog(rootPane, "record has been saved successfully");
+
+                Clearall();
+
+            } else if (x == 1) {
+                Clearall();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+//==============================================================================
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +110,7 @@ public class SignUp extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnLogin = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txt_FN = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -110,13 +165,15 @@ public class SignUp extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnLogin.setText("Login");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnRegister.setBackground(new java.awt.Color(153, 153, 153));
+        btnRegister.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                btnRegisterActionPerformed(evt);
             }
         });
-        jPanel3.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 310, 38));
+        jPanel3.add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 310, 38));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(236, 240, 241));
@@ -124,7 +181,6 @@ public class SignUp extends javax.swing.JFrame {
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 92, -1));
 
         txt_FN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_FN.setForeground(new java.awt.Color(228, 241, 254));
         jPanel3.add(txt_FN, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 188, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -133,7 +189,6 @@ public class SignUp extends javax.swing.JFrame {
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 92, -1));
 
         txt_ADDRESS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_ADDRESS.setForeground(new java.awt.Color(228, 241, 254));
         jPanel3.add(txt_ADDRESS, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 188, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -142,7 +197,6 @@ public class SignUp extends javax.swing.JFrame {
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 90, -1));
 
         txt_UN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_UN.setForeground(new java.awt.Color(228, 241, 254));
         jPanel3.add(txt_UN, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 188, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -151,7 +205,6 @@ public class SignUp extends javax.swing.JFrame {
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         jPasswordField_PASS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPasswordField_PASS.setForeground(new java.awt.Color(228, 241, 254));
         jPanel3.add(jPasswordField_PASS, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 188, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -160,7 +213,6 @@ public class SignUp extends javax.swing.JFrame {
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
         jPasswordField_REPASS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPasswordField_REPASS.setForeground(new java.awt.Color(228, 241, 254));
         jPanel3.add(jPasswordField_REPASS, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 188, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -169,7 +221,7 @@ public class SignUp extends javax.swing.JFrame {
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         jDateChooser_BDATE.setBackground(new java.awt.Color(108, 122, 137));
-        jPanel3.add(jDateChooser_BDATE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 188, 20));
+        jPanel3.add(jDateChooser_BDATE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 188, 25));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(236, 240, 241));
@@ -188,11 +240,9 @@ public class SignUp extends javax.swing.JFrame {
         jPanel3.add(jLabelRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
 
         txt_Email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_Email.setForeground(new java.awt.Color(228, 241, 254));
         jPanel3.add(txt_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 188, -1));
 
         txt_LN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_LN.setForeground(new java.awt.Color(228, 241, 254));
         jPanel3.add(txt_LN, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 188, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -201,7 +251,6 @@ public class SignUp extends javax.swing.JFrame {
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
         txt_Phn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_Phn.setForeground(new java.awt.Color(228, 241, 254));
         jPanel3.add(txt_Phn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 188, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -215,9 +264,9 @@ public class SignUp extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
-    }//GEN-LAST:event_btnLoginActionPerformed
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        Insert();
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void jLabelRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRegisterMouseClicked
         SignIn sup = null;
@@ -284,7 +333,7 @@ public class SignUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRegister;
     private com.toedter.calendar.JDateChooser jDateChooser_BDATE;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
