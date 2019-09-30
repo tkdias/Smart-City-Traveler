@@ -10,7 +10,7 @@ import com.keepautomation.barcode.IBarCode;
 
 /**
  *
- * @author T.K.Dias
+ * @author Jithmal
  */
 public class Barcode extends javax.swing.JFrame {
 

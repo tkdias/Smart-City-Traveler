@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author T.K.Dias
+ * @author Jithmal
  */
 public class Help extends javax.swing.JFrame {
 

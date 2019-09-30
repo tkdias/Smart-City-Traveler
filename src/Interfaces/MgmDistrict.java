@@ -21,7 +21,7 @@ import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author T.K.Dias
+ * @author Jithmal
  */
 public class MgmDistrict extends javax.swing.JFrame {
 

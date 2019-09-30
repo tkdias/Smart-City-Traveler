@@ -22,7 +22,7 @@ import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author T.K.Dias
+ * @author Jithmal
  */
 public class Home extends javax.swing.JFrame {
 

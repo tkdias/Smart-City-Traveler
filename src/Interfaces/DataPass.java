@@ -15,7 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 
 /**
  *
- * @author T.K.Dias
+ * @author Jithmal
  */
 public class DataPass extends javax.swing.JFrame {
 

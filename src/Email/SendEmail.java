@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author T.K.Diassssssss
+ * @author Jithmalsssssss
  */
 public class SendEmail {
 
@@ -58,7 +58,7 @@ public class SendEmail {
 
 //==============================================================================  
 //=========================================================== ( attachment2 ) ==  
-//       String file2="C:\\Users\\T.K.Dias\\Desktop\\mailtest\\mail2.txt";
+//       String file2="C:\\Users\\Jithmal\\Desktop\\mailtest\\mail2.txt";
 //       String fileName2 = "mail2.txt";
 //    messageBodyPart = new MimeBodyPart();   
 //    DataSource source2 = new FileDataSource(file2);      
@@ -67,7 +67,7 @@ public class SendEmail {
 //    multipart.addBodyPart(messageBodyPart);
 //==============================================================================  
 //=========================================================== ( attachment3 ) ==  
-//       String file3="C:\\Users\\T.K.Dias\\Desktop\\mailtest\\mail3.txt";
+//       String file3="C:\\Users\\Jithmal\\Desktop\\mailtest\\mail3.txt";
 //       String fileName3 = "mail3.txt";
 //    messageBodyPart = new MimeBodyPart();   
 //    DataSource source3 = new FileDataSource(file3);      
@@ -76,7 +76,7 @@ public class SendEmail {
 //    multipart.addBodyPart(messageBodyPart);
 //==============================================================================  
 //=========================================================== ( attachment4 ) ==  
-//        String file4="C:\\Users\\T.K.Dias\\Desktop\\mailtest\\mail4.txt";
+//        String file4="C:\\Users\\Jithmal\\Desktop\\mailtest\\mail4.txt";
 //        String fileName4 = "mail4.txt";
 //    messageBodyPart = new MimeBodyPart();   
 //    DataSource source4 = new FileDataSource(file4);      

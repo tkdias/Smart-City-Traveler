@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author T.K.Dias
+ * @author Jithmal
  */
 public class SignIn extends javax.swing.JFrame {
 

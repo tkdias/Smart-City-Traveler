@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author T.K.Dias
+ * @author Jithmal
  */
 public class MgmProfile extends javax.swing.JFrame {
 
