@@ -5,23 +5,8 @@
  */
 package Interfaces;
 
-import DB.DB;
-import Email.SendEmail;
-import java.awt.Toolkit;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -83,10 +68,10 @@ public class Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtBox = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
-        btnAdd1 = new javax.swing.JButton();
-        btnAdd2 = new javax.swing.JButton();
-        btnAdd3 = new javax.swing.JButton();
+        btnAddProfile = new javax.swing.JButton();
+        btnAddDistrict = new javax.swing.JButton();
+        btnAddLocation = new javax.swing.JButton();
+        btnAddProvince = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Home");
@@ -120,52 +105,52 @@ public class Main extends javax.swing.JFrame {
         txtBox.setForeground(new java.awt.Color(255, 255, 255));
         txtBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtBox.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel1.add(txtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 30));
+        jPanel1.add(txtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 120, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 600, 90));
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAdd.setBackground(new java.awt.Color(153, 153, 153));
-        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAdd.setText("Profile Management");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnAddProfile.setBackground(new java.awt.Color(153, 153, 153));
+        btnAddProfile.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddProfile.setText("Profile Management");
+        btnAddProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnAddProfileActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 580, 60));
+        jPanel2.add(btnAddProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 580, 60));
 
-        btnAdd1.setBackground(new java.awt.Color(153, 153, 153));
-        btnAdd1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAdd1.setText("Districts Management");
-        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddDistrict.setBackground(new java.awt.Color(153, 153, 153));
+        btnAddDistrict.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddDistrict.setText("Districts Management");
+        btnAddDistrict.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd1ActionPerformed(evt);
+                btnAddDistrictActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAdd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 580, 60));
+        jPanel2.add(btnAddDistrict, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 580, 60));
 
-        btnAdd2.setBackground(new java.awt.Color(153, 153, 153));
-        btnAdd2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAdd2.setText("Tourism Location Management");
-        btnAdd2.addActionListener(new java.awt.event.ActionListener() {
+        btnAddLocation.setBackground(new java.awt.Color(153, 153, 153));
+        btnAddLocation.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddLocation.setText("Tourism Location Management");
+        btnAddLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd2ActionPerformed(evt);
+                btnAddLocationActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAdd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 580, 60));
+        jPanel2.add(btnAddLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 580, 60));
 
-        btnAdd3.setBackground(new java.awt.Color(153, 153, 153));
-        btnAdd3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAdd3.setText("Province Management");
-        btnAdd3.addActionListener(new java.awt.event.ActionListener() {
+        btnAddProvince.setBackground(new java.awt.Color(153, 153, 153));
+        btnAddProvince.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddProvince.setText("Province Management");
+        btnAddProvince.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd3ActionPerformed(evt);
+                btnAddProvinceActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAdd3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 580, 60));
+        jPanel2.add(btnAddProvince, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 580, 60));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 550));
 
@@ -173,7 +158,7 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProfileActionPerformed
 
         MgmProfile ProfileMgm = new MgmProfile();
         String xx = txtBox.getText();
@@ -184,20 +169,40 @@ public class Main extends javax.swing.JFrame {
         ProfileMgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
 
+    }//GEN-LAST:event_btnAddProfileActionPerformed
 
-    }//GEN-LAST:event_btnAddActionPerformed
+    private void btnAddDistrictActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDistrictActionPerformed
+        MgmDistrict DistrictMgm = new MgmDistrict();
+        String xx = txtBox.getText();
+        MgmDistrict.txtBox.setText(xx);
+        DistrictMgm.setVisible(true);
+        DistrictMgm.pack();
+        DistrictMgm.setLocationRelativeTo(null);
+        DistrictMgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_btnAddDistrictActionPerformed
 
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdd1ActionPerformed
+    private void btnAddLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLocationActionPerformed
+        MgmProfile ProfileMgm = new MgmProfile();
+        String xx = txtBox.getText();
+        MgmProfile.txtBox.setText(xx);
+        ProfileMgm.setVisible(true);
+        ProfileMgm.pack();
+        ProfileMgm.setLocationRelativeTo(null);
+        ProfileMgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_btnAddLocationActionPerformed
 
-    private void btnAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdd2ActionPerformed
-
-    private void btnAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdd3ActionPerformed
+    private void btnAddProvinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProvinceActionPerformed
+        MgmProvince ProvinceMgm = new MgmProvince();
+        String xx = txtBox.getText();
+        MgmProvince.txtBox.setText(xx);
+        ProvinceMgm.setVisible(true);
+        ProvinceMgm.pack();
+        ProvinceMgm.setLocationRelativeTo(null);
+        ProvinceMgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_btnAddProvinceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,16 +243,16 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAdd1;
-    private javax.swing.JButton btnAdd2;
-    private javax.swing.JButton btnAdd3;
+    private javax.swing.JButton btnAddDistrict;
+    private javax.swing.JButton btnAddLocation;
+    private javax.swing.JButton btnAddProfile;
+    private javax.swing.JButton btnAddProvince;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
-    public javax.swing.JLabel txtBox;
+    public static javax.swing.JLabel txtBox;
     // End of variables declaration//GEN-END:variables
 }

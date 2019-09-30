@@ -6,20 +6,14 @@
 package Interfaces;
 
 import DB.DB;
-import Email.SendEmail;
-import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Random;
-import java.util.Vector;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -66,7 +60,6 @@ public class MgmProfile extends javax.swing.JFrame {
     }
 
 //==============================================================================
-    
 //==================================================================Clearall()==
     public void Clearall() {
 
@@ -84,9 +77,10 @@ public class MgmProfile extends javax.swing.JFrame {
     }
 //==============================================================================
 //====================================================================Search()==
+
     public void Search() {
         try {
-            
+
             System.out.println(txtBox.getText());
 
             Connection c = DB.mycon();
@@ -96,7 +90,7 @@ public class MgmProfile extends javax.swing.JFrame {
             SimpleDateFormat DDate = new SimpleDateFormat("yyyy-MM-dd");
 
             while (rs.next()) {
-                
+
                 txt_FN.setText(rs.getString("first_name"));
                 txt_LN.setText(rs.getString("last_name"));
                 txt_UN.setText(rs.getString("username"));
@@ -115,10 +109,10 @@ public class MgmProfile extends javax.swing.JFrame {
     }
 //==============================================================================
 //====================================================================Update()==
+
     public void Update() {
 
         try {
-
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             String jDate = sdf.format(jDateChooser_BDATE.getDate());
@@ -146,7 +140,6 @@ public class MgmProfile extends javax.swing.JFrame {
     }
 
 //==============================================================================
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,6 +155,7 @@ public class MgmProfile extends javax.swing.JFrame {
         txtBox = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -204,7 +198,7 @@ public class MgmProfile extends javax.swing.JFrame {
         txtBox.setForeground(new java.awt.Color(255, 255, 255));
         txtBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtBox.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel1.add(txtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 30));
+        jPanel1.add(txtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 120, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -217,6 +211,14 @@ public class MgmProfile extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 140, 30));
+
+        jButton1.setText("Home");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 120, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 600, 90));
 
@@ -329,6 +331,17 @@ public class MgmProfile extends javax.swing.JFrame {
         Search();
     }//GEN-LAST:event_btnUpdate1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Main MainMgm = new Main();
+        String xx = txtBox.getText();
+        Main.txtBox.setText(xx);
+        MainMgm.setVisible(true);
+        MainMgm.pack();
+        MainMgm.setLocationRelativeTo(null);
+        MainMgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -370,6 +383,7 @@ public class MgmProfile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdate1;
+    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser_BDATE;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -11,27 +11,29 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
-import java.util.Random;
-import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
+import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author T.K.Dias
  */
-public class MgmProvince extends javax.swing.JFrame {
+public class MgmLocation extends javax.swing.JFrame {
 
     /**
      * Creates new form Add
      */
-    public MgmProvince() {
+    public MgmLocation() {
         initComponents();
         time();
+        cmbLoad();
         tblLoad();
     }
 
@@ -65,8 +67,32 @@ public class MgmProvince extends javax.swing.JFrame {
     }
 
 //==============================================================================
+//===================================================================cmbLoad()== 
+    private void cmbLoad() {
+
+        try {
+            Connection c = DB.mycon();
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("SELECT * FROM province");
+
+            Vector v = new Vector();
+            v.add("Select Province");
+            while (rs.next()) {
+                v.add(rs.getString("Province_Name"));
+            }
+            cmbProvince.setModel(new DefaultComboBoxModel(v));
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+//==============================================================================   
 //==================================================================Clearall()==
     public void Clearall() {
+        cmbProvince.setSelectedIndex(0);
         txtId.setText("");
         txtName.setText("");
     }
@@ -86,7 +112,7 @@ public class MgmProvince extends javax.swing.JFrame {
 
                 Connection c = DB.mycon();
                 Statement s = c.createStatement();
-                s.executeUpdate("INSERT INTO province (Province_ID,Province_Name) values('" + rand + "','" + txtName.getText() + "')");
+                s.executeUpdate("INSERT INTO district (District_ID,District_Name,Province_Name) values('" + rand + "','" + txtName.getText() + "','" + cmbProvince.getSelectedItem() + "')");
                 JOptionPane.showMessageDialog(rootPane, "record has been saved successfully");
 
                 Clearall();
@@ -113,7 +139,7 @@ public class MgmProvince extends javax.swing.JFrame {
 
                 Connection c = DB.mycon();
                 Statement s = c.createStatement();
-                s.executeUpdate("UPDATE province SET Province_Name = '" + txtName.getText() + "' where Province_ID = '" + txtId.getText() + "' ");
+                s.executeUpdate("UPDATE district SET District_Name = '" + txtName.getText() + "',Province_Name = '" + cmbProvince.getSelectedItem() + "' where District_ID = '" + txtId.getText() + "' ");
                 JOptionPane.showMessageDialog(rootPane, "record has been Updated successfully ");
 
                 Clearall();
@@ -135,11 +161,12 @@ public class MgmProvince extends javax.swing.JFrame {
 
             Connection c = DB.mycon();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM province WHERE Province_ID = '" + txtId.getText() + "'");
+            ResultSet rs = s.executeQuery("SELECT * FROM district WHERE District_ID = '" + txtId.getText() + "'");
 
             while (rs.next()) {
-                txtId.setText(rs.getString("Province_ID"));
-                txtName.setText(rs.getString("Province_Name"));
+                txtId.setText(rs.getString("District_ID"));
+                txtName.setText(rs.getString("District_Name"));
+                cmbProvince.setSelectedItem(rs.getString("Province_Name"));
             }
 
         } catch (Exception e) {
@@ -155,7 +182,7 @@ public class MgmProvince extends javax.swing.JFrame {
 
             Connection c = DB.mycon();
             Statement s = c.createStatement();
-            s.executeUpdate("DELETE FROM province WHERE Province_Name ='" + txtName.getText() + "'");
+            s.executeUpdate("DELETE FROM district WHERE District_Name ='" + txtName.getText() + "'");
             JOptionPane.showMessageDialog(rootPane, "record has been not Deleted successfully ");
 
         } catch (Exception e) {
@@ -172,7 +199,7 @@ public class MgmProvince extends javax.swing.JFrame {
             Connection c = DB.mycon();
             Statement s = c.createStatement();
 
-            ResultSet rs1 = s.executeQuery("SELECT * FROM province");
+            ResultSet rs1 = s.executeQuery("SELECT * FROM district");
             jTable.setModel(DbUtils.resultSetToTableModel(rs1));
 
         } catch (ClassNotFoundException e) {
@@ -191,11 +218,12 @@ public class MgmProvince extends javax.swing.JFrame {
 
             Connection c = DB.mycon();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM province WHERE Province_ID ='" + table_click + "'");
+            ResultSet rs = s.executeQuery("SELECT * FROM district WHERE District_ID ='" + table_click + "'");
 
             while (rs.next()) {
-                txtId.setText(rs.getString("Province_ID"));
-                txtName.setText(rs.getString("Province_Name"));
+                txtId.setText(rs.getString("District_ID"));
+                txtName.setText(rs.getString("District_Name"));
+                cmbProvince.setSelectedItem(rs.getString("Province_Name"));
             }
 
         } catch (Exception e) {
@@ -231,6 +259,8 @@ public class MgmProvince extends javax.swing.JFrame {
         jTable = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        cmbProvince = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Home");
@@ -263,7 +293,7 @@ public class MgmProvince extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Province Management");
+        jLabel10.setText("Districts Management");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 290, 30));
 
         jButton1.setText("Home");
@@ -311,8 +341,8 @@ public class MgmProvince extends javax.swing.JFrame {
 
         jLabel9.setBackground(new java.awt.Color(204, 204, 204));
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Province Name:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 130, -1));
+        jLabel9.setText("District Name:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 120, -1));
 
         txtName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtName.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -325,7 +355,7 @@ public class MgmProvince extends javax.swing.JFrame {
                 txtNameKeyTyped(evt);
             }
         });
-        jPanel2.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 210, 39));
+        jPanel2.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 210, 39));
 
         btnSearch.setBackground(new java.awt.Color(102, 102, 102));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -371,8 +401,8 @@ public class MgmProvince extends javax.swing.JFrame {
 
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setText("Province ID:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 130, -1));
+        jLabel11.setText("District ID:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 90, -1));
 
         txtId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtId.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -385,7 +415,15 @@ public class MgmProvince extends javax.swing.JFrame {
                 txtIdKeyTyped(evt);
             }
         });
-        jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 210, 39));
+        jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 210, 39));
+
+        jLabel12.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setText("Province Name:");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 130, -1));
+
+        cmbProvince.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Male", "Female" }));
+        jPanel2.add(cmbProvince, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 210, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 550));
 
@@ -477,14 +515,26 @@ public class MgmProvince extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MgmProvince.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MgmLocation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MgmProvince.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MgmLocation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MgmProvince.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MgmLocation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MgmProvince.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MgmLocation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -493,7 +543,7 @@ public class MgmProvince extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MgmProvince().setVisible(true);
+                new MgmLocation().setVisible(true);
             }
         });
     }
@@ -504,9 +554,11 @@ public class MgmProvince extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbProvince;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
