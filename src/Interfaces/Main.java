@@ -5,7 +5,10 @@
  */
 package Interfaces;
 
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -67,11 +70,13 @@ public class Main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtBox = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnAddProfile = new javax.swing.JButton();
         btnAddDistrict = new javax.swing.JButton();
         btnAddLocation = new javax.swing.JButton();
         btnAddProvince = new javax.swing.JButton();
+        btnAddLocation1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Home");
@@ -106,6 +111,14 @@ public class Main extends javax.swing.JFrame {
         txtBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtBox.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel1.add(txtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 120, 30));
+
+        jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 120, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 600, 90));
 
@@ -152,9 +165,19 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel2.add(btnAddProvince, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 580, 60));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 550));
+        btnAddLocation1.setBackground(new java.awt.Color(153, 153, 153));
+        btnAddLocation1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddLocation1.setText("Tourism Location Management");
+        btnAddLocation1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddLocation1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnAddLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 580, 60));
 
-        setSize(new java.awt.Dimension(634, 564));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 660));
+
+        setSize(new java.awt.Dimension(634, 671));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -204,6 +227,27 @@ public class Main extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnAddProvinceActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        SignIn Logout = null;
+        try {
+            Logout = new SignIn();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String xx = txtBox.getText();
+        Logout.setVisible(true);
+        Logout.pack();
+        Logout.setLocationRelativeTo(null);
+        Logout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAddLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLocation1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddLocation1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -245,8 +289,10 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddDistrict;
     private javax.swing.JButton btnAddLocation;
+    private javax.swing.JButton btnAddLocation1;
     private javax.swing.JButton btnAddProfile;
     private javax.swing.JButton btnAddProvince;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

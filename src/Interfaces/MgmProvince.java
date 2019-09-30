@@ -367,7 +367,7 @@ public class MgmProvince extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 590, 150));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 590, 180));
 
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -389,7 +389,7 @@ public class MgmProvince extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 550));
 
-        setSize(new java.awt.Dimension(634, 493));
+        setSize(new java.awt.Dimension(634, 522));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
