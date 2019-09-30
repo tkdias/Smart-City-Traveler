@@ -18,7 +18,7 @@ public class DB {
     public static Connection mycon() throws ClassNotFoundException, SQLException
     {
     Class.forName("com.mysql.jdbc.Driver");
-    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/chathudb","root","");
+    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/smart-city-traveler","root","");
     
         return c;
     }

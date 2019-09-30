@@ -112,9 +112,9 @@ public class SignIn extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
         txt_username.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txt_username.setText("tkdias");
+        txt_username.setText("jithmal");
 
-        txt_password.setText("qqq");
+        txt_password.setText("Pwd@123");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
