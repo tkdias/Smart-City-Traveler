@@ -73,14 +73,14 @@ public class MgmLocation extends javax.swing.JFrame {
         try {
             Connection c = DB.mycon();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM province");
+            ResultSet rs = s.executeQuery("SELECT * FROM location");
 
             Vector v = new Vector();
-            v.add("Select Province");
+            v.add("Select district");
             while (rs.next()) {
-                v.add(rs.getString("Province_Name"));
+                v.add(rs.getString("District_Name"));
             }
-            cmbProvince.setModel(new DefaultComboBoxModel(v));
+            cmbDistrict.setModel(new DefaultComboBoxModel(v));
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -92,9 +92,10 @@ public class MgmLocation extends javax.swing.JFrame {
 //==============================================================================   
 //==================================================================Clearall()==
     public void Clearall() {
-        cmbProvince.setSelectedIndex(0);
-        txtId.setText("");
-        txtName.setText("");
+        cmbDistrict.setSelectedIndex(0);
+        txtLocId.setText("");
+        txtLocName.setText("");
+        txtLocUrl.setText("");
     }
 //==============================================================================
 //====================================================================Insert()==
@@ -112,7 +113,7 @@ public class MgmLocation extends javax.swing.JFrame {
 
                 Connection c = DB.mycon();
                 Statement s = c.createStatement();
-                s.executeUpdate("INSERT INTO district (District_ID,District_Name,Province_Name) values('" + rand + "','" + txtName.getText() + "','" + cmbProvince.getSelectedItem() + "')");
+                s.executeUpdate("INSERT INTO location (Location_ID,Location_Name,District_Name,Location_URL,Date_Added) values('" + rand + "','" + txtLocName.getText() + "','" + cmbDistrict.getSelectedItem() + "','" + txtLocUrl.getText() + "')");
                 JOptionPane.showMessageDialog(rootPane, "record has been saved successfully");
 
                 Clearall();
@@ -139,7 +140,7 @@ public class MgmLocation extends javax.swing.JFrame {
 
                 Connection c = DB.mycon();
                 Statement s = c.createStatement();
-                s.executeUpdate("UPDATE district SET District_Name = '" + txtName.getText() + "',Province_Name = '" + cmbProvince.getSelectedItem() + "' where District_ID = '" + txtId.getText() + "' ");
+                s.executeUpdate("UPDATE location SET Location_Name = '" + txtLocName.getText() + "',District_Name = '" + cmbDistrict.getSelectedItem() + "',Location_URL = '" + txtLocUrl.getText() + "' where Location_ID = '" + txtLocId.getText() + "' ");
                 JOptionPane.showMessageDialog(rootPane, "record has been Updated successfully ");
 
                 Clearall();
@@ -161,12 +162,12 @@ public class MgmLocation extends javax.swing.JFrame {
 
             Connection c = DB.mycon();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM district WHERE District_ID = '" + txtId.getText() + "'");
+            ResultSet rs = s.executeQuery("SELECT * FROM location WHERE Location_ID = '" + txtLocId.getText() + "'");
 
             while (rs.next()) {
-                txtId.setText(rs.getString("District_ID"));
-                txtName.setText(rs.getString("District_Name"));
-                cmbProvince.setSelectedItem(rs.getString("Province_Name"));
+                txtLocName.setText(rs.getString("Location_Name"));
+                txtLocUrl.setText(rs.getString("Location_URL"));
+                cmbDistrict.setSelectedItem(rs.getString("District_Name"));
             }
 
         } catch (Exception e) {
@@ -182,7 +183,7 @@ public class MgmLocation extends javax.swing.JFrame {
 
             Connection c = DB.mycon();
             Statement s = c.createStatement();
-            s.executeUpdate("DELETE FROM district WHERE District_Name ='" + txtName.getText() + "'");
+            s.executeUpdate("DELETE FROM location WHERE Location_Name ='" + txtLocName.getText() + "'");
             JOptionPane.showMessageDialog(rootPane, "record has been not Deleted successfully ");
 
         } catch (Exception e) {
@@ -199,7 +200,7 @@ public class MgmLocation extends javax.swing.JFrame {
             Connection c = DB.mycon();
             Statement s = c.createStatement();
 
-            ResultSet rs1 = s.executeQuery("SELECT * FROM district");
+            ResultSet rs1 = s.executeQuery("SELECT * FROM location");
             jTable.setModel(DbUtils.resultSetToTableModel(rs1));
 
         } catch (ClassNotFoundException e) {
@@ -218,12 +219,14 @@ public class MgmLocation extends javax.swing.JFrame {
 
             Connection c = DB.mycon();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM district WHERE District_ID ='" + table_click + "'");
+            ResultSet rs = s.executeQuery("SELECT * FROM location WHERE Location_ID ='" + table_click + "'");
 
             while (rs.next()) {
-                txtId.setText(rs.getString("District_ID"));
-                txtName.setText(rs.getString("District_Name"));
-                cmbProvince.setSelectedItem(rs.getString("Province_Name"));
+                txtLocId.setText(rs.getString("Location_ID"));
+                txtLocName.setText(rs.getString("Location_Name"));
+                cmbDistrict.setSelectedItem(rs.getString("District_Name"));
+                txtLocUrl.setText(rs.getString("Location_URL"));
+
             }
 
         } catch (Exception e) {
@@ -252,15 +255,17 @@ public class MgmLocation extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
+        txtLocName = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
+        txtLocId = new javax.swing.JTextField();
+        cmbDistrict = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtLocUrl = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        cmbProvince = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Home");
@@ -341,21 +346,21 @@ public class MgmLocation extends javax.swing.JFrame {
 
         jLabel9.setBackground(new java.awt.Color(204, 204, 204));
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("District Name:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 120, -1));
+        jLabel9.setText("Location Name:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, -1));
 
-        txtName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtName.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtLocName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtLocName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtNameMouseClicked(evt);
+                txtLocNameMouseClicked(evt);
             }
         });
-        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtLocName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNameKeyTyped(evt);
+                txtLocNameKeyTyped(evt);
             }
         });
-        jPanel2.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 210, 39));
+        jPanel2.add(txtLocName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 210, 39));
 
         btnSearch.setBackground(new java.awt.Color(102, 102, 102));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -397,37 +402,55 @@ public class MgmLocation extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 590, 150));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 590, 150));
+
+        txtLocId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtLocId.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtLocIdMouseClicked(evt);
+            }
+        });
+        txtLocId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLocIdKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtLocId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 210, 39));
+
+        cmbDistrict.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Male", "Female" }));
+        jPanel2.add(cmbDistrict, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 210, 40));
+
+        jLabel13.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText("District Name:");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 120, -1));
+
+        jLabel14.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setText("Location ID:");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 100, -1));
+
+        txtLocUrl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtLocUrl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtLocUrlMouseClicked(evt);
+            }
+        });
+        txtLocUrl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLocUrlKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtLocUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 210, 39));
 
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setText("District ID:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 90, -1));
-
-        txtId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtId.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtIdMouseClicked(evt);
-            }
-        });
-        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIdKeyTyped(evt);
-            }
-        });
-        jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 210, 39));
-
-        jLabel12.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel12.setText("Province Name:");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 130, -1));
-
-        cmbProvince.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Male", "Female" }));
-        jPanel2.add(cmbProvince, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 210, 40));
+        jLabel11.setText("Location URL:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 120, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 550));
 
-        setSize(new java.awt.Dimension(634, 493));
+        setSize(new java.awt.Dimension(634, 554));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -451,7 +474,7 @@ public class MgmLocation extends javax.swing.JFrame {
         tblLoad();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+    private void txtLocNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocNameKeyTyped
 
         try {
 
@@ -465,11 +488,11 @@ public class MgmLocation extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-    }//GEN-LAST:event_txtNameKeyTyped
+    }//GEN-LAST:event_txtLocNameKeyTyped
 
-    private void txtNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameMouseClicked
+    private void txtLocNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLocNameMouseClicked
 
-    }//GEN-LAST:event_txtNameMouseClicked
+    }//GEN-LAST:event_txtLocNameMouseClicked
 
     private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
         Clearall();
@@ -479,13 +502,13 @@ public class MgmLocation extends javax.swing.JFrame {
         RowClick();
     }//GEN-LAST:event_jTableMouseClicked
 
-    private void txtIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdMouseClicked
+    private void txtLocIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLocIdMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdMouseClicked
+    }//GEN-LAST:event_txtLocIdMouseClicked
 
-    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+    private void txtLocIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocIdKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdKeyTyped
+    }//GEN-LAST:event_txtLocIdKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Main MainMgm = new Main();
@@ -497,6 +520,14 @@ public class MgmLocation extends javax.swing.JFrame {
         MainMgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtLocUrlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLocUrlMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLocUrlMouseClicked
+
+    private void txtLocUrlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocUrlKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLocUrlKeyTyped
 
     /**
      * @param args the command line arguments
@@ -554,11 +585,12 @@ public class MgmLocation extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbProvince;
+    private javax.swing.JComboBox<String> cmbDistrict;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
@@ -568,7 +600,8 @@ public class MgmLocation extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     public static javax.swing.JLabel txtBox;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtLocId;
+    private javax.swing.JTextField txtLocName;
+    private javax.swing.JTextField txtLocUrl;
     // End of variables declaration//GEN-END:variables
 }

@@ -183,13 +183,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddDistrictActionPerformed
 
     private void btnAddLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLocationActionPerformed
-        MgmProfile ProfileMgm = new MgmProfile();
+        MgmLocation LocationMgm = new MgmLocation();
         String xx = txtBox.getText();
-        MgmProfile.txtBox.setText(xx);
-        ProfileMgm.setVisible(true);
-        ProfileMgm.pack();
-        ProfileMgm.setLocationRelativeTo(null);
-        ProfileMgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        MgmLocation.txtBox.setText(xx);
+        LocationMgm.setVisible(true);
+        LocationMgm.pack();
+        LocationMgm.setLocationRelativeTo(null);
+        LocationMgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_btnAddLocationActionPerformed
 

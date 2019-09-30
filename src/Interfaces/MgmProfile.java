@@ -9,11 +9,12 @@ import DB.DB;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 
 /**
  *
